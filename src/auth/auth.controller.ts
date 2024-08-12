@@ -19,7 +19,7 @@ export class AuthController {
     return this.authService.register(userData);
   }
 
-  @UseGuards()
+  @UseGuards(AuthGuard)
   @Get('profile')
   getProfile(@Request() req) {
     return req.user;
