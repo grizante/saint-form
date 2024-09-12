@@ -10,12 +10,14 @@ import { User } from './dto/user.dto';
 
 @Injectable()
 export class AuthService {
-  private readonly saltRounds = 10;
+  private readonly saltRounds;
   constructor(
     private readonly userService: UserService,
     private readonly jwtService: JwtService,
     private readonly prismaService: PrismaService,
-  ) {}
+  ) {
+    this.saltRounds = 10;
+  }
 
   async hashPassword(password: string): Promise<string> {
     const salt = await bcrypt.genSalt(this.saltRounds);
